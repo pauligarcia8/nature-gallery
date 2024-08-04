@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function NatureCard({imgSrc, title, content}) {
+export default function MuiCard({imgSrc, title, content, buttonPosition}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -22,10 +22,13 @@ export default function NatureCard({imgSrc, title, content}) {
           {content}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
+      <CardActions style={{
+          justifyContent: buttonPosition ? 'flex-start' : 'flex-end'
+        }}
+      >
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
   );
 }
+

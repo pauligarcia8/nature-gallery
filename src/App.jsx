@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NatureCard from './components/NatureCard';
+import NatureCard from './components/MuiCard';
 import autumn from './assets/autumn-forest-road-from-above-picjumbo-com.jpg'
 import greenHills from './assets/beautiful-green-hills-with-flowers-and-sunset-picjumbo-com.jpeg'
 import landscape from './assets/beautifully-gentle-hilly-landscape-picjumbo-com.jpeg'
@@ -20,7 +20,12 @@ function App() {
       </Box>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item={{xs: 4, sm: 8, md: 12}}>
-          <NatureCard imgSrc={autumn} title="Autumn on road" content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.'></NatureCard>
+          <NatureCard 
+            imgSrc={autumn} 
+            title="Autumn on road" 
+            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.'
+          />
+
         </Grid>
         <Grid item={{xs: 4, sm: 8, md: 12}}>
           <NatureCard imgSrc={greenHills} title="Green Hills" content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.'></NatureCard>
