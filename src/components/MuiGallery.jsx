@@ -5,13 +5,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import autumn from '../assets/autumn-forest-road-from-above-picjumbo-com.jpg'
-import greenHills from '../assets/beautiful-green-hills-with-flowers-and-sunset-picjumbo-com.jpeg'
-import landscape from '../assets/beautifully-gentle-hilly-landscape-picjumbo-com.jpeg'
-import mountain from '../assets/kirkjufell-mountain-picjumbo-com.jpg'
-import sunset from '../assets/purple-romantic-sunset-on-the-coast-picjumbo-com.jpeg'
-import norway_mountain from '../assets/segla-mountain-norway-free-photos-picjumbo-com.jpg'
-import { useState } from 'react';
+import { itemData } from '../itemData';
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
@@ -22,14 +16,14 @@ function srcset(image, width, height, rows = 1, cols = 1) {
   };
 }
 
-export default function CustomImageList({clickIcon}) {
-    const [starClicked, setStarClicked] = useState();
+export default function CustomImageList({favorites, clickIcon}) {
 
-    const handleClick = (id) => {
-        setStarClicked(() => !starClicked)
-
-        clickIcon(id);
-    }
+  console.log(favorites)
+  const handleClick = (id, imageTitle) => {
+      const isCurrentlyFavorite = favorites.some(fav => fav.id === id);
+      console.log('iscurrently fav', isCurrentlyFavorite)
+      clickIcon(isCurrentlyFavorite, id, imageTitle);
+    };
 
   return (
     <ImageList
@@ -45,9 +39,10 @@ export default function CustomImageList({clickIcon}) {
       {itemData.map((item, idx) => {
         const cols = item.featured ? 2 : 1;
         const rows = item.featured ? 2 : 1;
+        const isFavorite = favorites.some(fav => fav.id === idx);
 
         return (
-          <ImageListItem key={`${item.img}-idx`} cols={cols} rows={rows}>
+          <ImageListItem key={`${item.title}-idx`} cols={cols} rows={rows}>
             <img
               {...srcset(item.img, 600, 400, rows, cols)}
               alt={item.title}
@@ -65,8 +60,9 @@ export default function CustomImageList({clickIcon}) {
                 <IconButton
                   sx={{ color: 'white' }}
                   aria-label={`star ${item.title}`}
+                  onClick={() => {handleClick(idx, item.title)}}
                 >
-                  {starClicked ? <StarIcon onClick={() => {handleClick(idx)}} /> : <StarBorderIcon onClick={() => {handleClick(idx)}}/>}
+                  {isFavorite ? <StarIcon/> : <StarBorderIcon/>}
                 </IconButton>
               }
               actionPosition="left"
@@ -78,47 +74,3 @@ export default function CustomImageList({clickIcon}) {
   );
 }
 
-const itemData = [
-  {
-    img: autumn,
-    title: 'Autumn',
-    featured: true,
-  },
-  {
-    img: greenHills,
-    title: 'Green Hills',
-    author: '@rollelflex_graphy726',
-  },
-  {
-    img: landscape,
-    title: 'Landscape',
-    author: '@helloimnik',
-  },
-  {
-    img: mountain,
-    title: 'Mountain',
-    author: '@nolanissac',
-  },
-  {
-    img: sunset,
-    title: 'Sunset',
-    author: '@hjrc33',
-  },
-  {
-    img: norway_mountain,
-    title: 'Norway Mountain',
-    author: '@arwinneil',
-    featured: true,
-  },
-  {
-    img: greenHills,
-    title: 'Green Hills',
-    author: '@rollelflex_graphy726',
-  },
-  {
-    img: landscape,
-    title: 'Landscape',
-    author: '@helloimnik',
-  },
-  
-];
