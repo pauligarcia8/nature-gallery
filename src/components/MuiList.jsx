@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 
-export default function GutterlessList({list}) {
+export default function GutterlessList({list, onRemoveFavorite}) {
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {list.map((item) => (
@@ -14,7 +14,7 @@ export default function GutterlessList({list}) {
           sx={{color: 'black'}}
           disableGutters
           secondaryAction={
-            <IconButton aria-label="delete">
+            <IconButton aria-label="delete" onClick={() => {onRemoveFavorite(item.id)}}>
               <DeleteIcon sx={{color: 'black'}}/>
             </IconButton>
           }
