@@ -16,13 +16,13 @@ function srcset(image, width, height, rows = 1, cols = 1) {
   };
 }
 
-export default function CustomImageList({favorites, clickIcon}) {
+export default function CustomImageList({favorites, onClickFavorite}) {
 
   console.log(favorites)
   const handleClick = (id, imageTitle) => {
       const isCurrentlyFavorite = favorites.some(fav => fav.id === id);
       console.log('iscurrently fav', isCurrentlyFavorite)
-      clickIcon(isCurrentlyFavorite, id, imageTitle);
+      onClickFavorite(isCurrentlyFavorite, id, imageTitle);
     };
 
   return (
