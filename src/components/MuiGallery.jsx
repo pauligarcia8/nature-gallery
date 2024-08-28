@@ -16,7 +16,7 @@ function srcset(image, width, height, rows = 1, cols = 1) {
   };
 }
 
-export default function CustomImageList({favorites, onClickFavorite}) {
+export default function MuiGallery({favorites, onClickFavorite}) {
 
   console.log(favorites)
   const handleClick = (id, imageTitle) => {
